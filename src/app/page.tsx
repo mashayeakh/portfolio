@@ -297,7 +297,7 @@ export default function Home() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-surface-container-lowest/50 border border-white/5 p-6 rounded-2xl hover:border-[#08fdd8]/30 transition-all hover:-translate-y-1">
-                <span className="text-4xl font-bold text-[#08fdd8] block mb-2">3+</span>
+                <span className="text-4xl font-bold text-[#08fdd8] block mb-2">2</span>
                 <span className="text-slate-400 text-sm font-bold tracking-widest uppercase">Years Exp.</span>
               </div>
               <div className="bg-surface-container-lowest/50 border border-white/5 p-6 rounded-2xl hover:border-[#ff014f]/30 transition-all hover:-translate-y-1">

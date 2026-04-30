@@ -36,7 +36,7 @@ export default function About() {
           {/* Stats Grid */}
           <div className="grid grid-cols-3 gap-4">
             <div className="p-6 rounded-2xl glass-border bg-surface-container-lowest text-center group hover:-translate-y-1 transition-transform">
-              <span className="block text-3xl font-bold text-[#00c2ff] mb-1">3+</span>
+              <span className="block text-3xl font-bold text-[#00c2ff] mb-1">2</span>
               <span className="font-label-md text-[10px] text-slate-400 uppercase tracking-widest font-bold">Years Exp.</span>
             </div>
             <div className="p-6 rounded-2xl glass-border bg-surface-container-lowest text-center group hover:-translate-y-1 transition-transform">
