@@ -90,22 +90,18 @@ export default function Contact() {
           </div>
 
           {/* Social Links */}
-          <div className="grid grid-cols-2 gap-4">
-            <a href="#" className="flex items-center gap-3 p-4 bg-surface-container-highest/10 border border-white/5 rounded-lg hover:bg-white hover:text-slate-950 transition-all duration-300">
-              <span className="material-symbols-outlined">alternate_email</span>
-              <span className="font-label-md text-label-md">GitHub</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="https://github.com/mashayeakh" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-surface-container-highest/10 border border-white/5 rounded-lg hover:bg-white hover:text-slate-950 transition-all duration-300">
+              <span className="material-symbols-outlined">code</span>
+              <span className="font-label-md text-label-md font-bold">GitHub</span>
             </a>
-            <a href="#" className="flex items-center gap-3 p-4 bg-surface-container-highest/10 border border-white/5 rounded-lg hover:bg-white hover:text-slate-950 transition-all duration-300">
-              <span className="material-symbols-outlined">share</span>
-              <span className="font-label-md text-label-md">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/masayeakh-islam-8575b735a/" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-surface-container-highest/10 border border-white/5 rounded-lg hover:bg-[#00c2ff] hover:text-white transition-all duration-300">
+              <span className="material-symbols-outlined">work</span>
+              <span className="font-label-md text-label-md font-bold">LinkedIn</span>
             </a>
-            <a href="#" className="flex items-center gap-3 p-4 bg-surface-container-highest/10 border border-white/5 rounded-lg hover:bg-white hover:text-slate-950 transition-all duration-300">
-              <span className="material-symbols-outlined">camera</span>
-              <span className="font-label-md text-label-md">Dribbble</span>
-            </a>
-            <a href="#" className="flex items-center gap-3 p-4 bg-surface-container-highest/10 border border-white/5 rounded-lg hover:bg-white hover:text-slate-950 transition-all duration-300">
-              <span className="material-symbols-outlined">public</span>
-              <span className="font-label-md text-label-md">Twitter</span>
+            <a href="https://x.com/MashTechie" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-surface-container-highest/10 border border-white/5 rounded-lg hover:bg-white hover:text-slate-950 transition-all duration-300">
+              <span className="material-symbols-outlined">tag</span>
+              <span className="font-label-md text-label-md font-bold">X (Twitter)</span>
             </a>
           </div>
 
@@ -113,8 +109,8 @@ export default function Contact() {
           <div className="p-6 border border-white/5 rounded-lg bg-gradient-to-br from-primary-container/5 to-transparent">
             <h4 className="text-white font-bold mb-2">Direct Contact</h4>
             <p className="text-on-surface-variant mb-4">Feel free to reach out directly if you prefer email.</p>
-            <a href="mailto:hello@portfolio.design" className="text-primary font-bold hover:underline">
-              hello@portfolio.design
+            <a href="mailto:islammasayekh@gmail.com" className="text-[#00c2ff] font-bold hover:underline">
+              islammasayekh@gmail.com
             </a>
           </div>
         </div>

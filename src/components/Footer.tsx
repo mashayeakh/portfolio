@@ -7,7 +7,7 @@ export default function Footer() {
 
   const links = [
     { href: "/", icon: "home" },
-    { href: "/work", icon: "work" },
+    { href: "/project", icon: "work" },
     { href: "/about", icon: "person" },
     { href: "/contact", icon: "mail" },
   ];
@@ -20,11 +20,10 @@ export default function Footer() {
           <Link
             key={link.href}
             href={link.href}
-            className={`flex items-center justify-center p-3 transition-colors active:scale-90 transition-transform ${
-              isActive
-                ? "bg-teal-400/20 text-teal-400 rounded-full ring-1 ring-teal-400/50"
-                : "text-slate-500 hover:text-teal-300"
-            }`}
+            className={`flex items-center justify-center p-3 transition-colors active:scale-90 transition-transform ${isActive
+              ? "bg-teal-400/20 text-teal-400 rounded-full ring-1 ring-teal-400/50"
+              : "text-slate-500 hover:text-teal-300"
+              }`}
           >
             <span className="material-symbols-outlined">{link.icon}</span>
           </Link>
