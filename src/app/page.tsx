@@ -1,8 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Typewriter from "../components/Typewriter";
+import { motion } from "framer-motion";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function Home() {
+  const container = useRef<HTMLElement>(null);
   const projects = [
     {
       title: "FoodHub",
@@ -46,10 +55,129 @@ export default function Home() {
     }
   ];
 
+  useGSAP(() => {
+    // 1. Hero Entry Timeline
+    const tl = gsap.timeline();
+    
+    tl.fromTo(".hero-element", 
+      { y: 50, opacity: 0, filter: "blur(8px)" },
+      { y: 0, opacity: 1, filter: "blur(0px)", duration: 1, stagger: 0.15, ease: "power4.out", delay: 0.2 }
+    );
+    
+    tl.fromTo(".hero-image-wrapper",
+      { scale: 0.85, opacity: 0, rotation: -3, y: 30 },
+      { scale: 1, opacity: 1, rotation: 0, y: 0, duration: 1.5, ease: "elastic.out(1, 0.7)" },
+      "-=0.8"
+    );
+
+    // 2. Hero Scrub/Parallax (Exit)
+    gsap.to(".hero-content-wrapper", {
+      y: -100,
+      opacity: 0,
+      scale: 0.95,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+
+    gsap.to(".hero-image-wrapper", {
+      y: -50,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+
+    // 3. Atmosphere Parallax
+    gsap.to(".atmosphere-bg", {
+      y: 300,
+      ease: "none",
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.5,
+      }
+    });
+
+    // 4. Staggered Tech Stack Reveal
+    gsap.fromTo(".tech-icon", 
+      { y: 40, opacity: 0, scale: 0.8 },
+      {
+        y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.05, ease: "back.out(1.5)",
+        scrollTrigger: {
+          trigger: "#tech-stack",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // 5. Staggered Projects Reveal
+    gsap.fromTo(".project-card",
+      { y: 80, opacity: 0, rotateX: 10, transformPerspective: 1000 },
+      {
+        y: 0, opacity: 1, rotateX: 0, duration: 1, stagger: 0.15, ease: "power3.out",
+        scrollTrigger: {
+          trigger: "#projects",
+          start: "top 75%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // 6. Premium Section Titles (Clip Path Reveal)
+    const sectionTitles = gsap.utils.toArray<HTMLElement>('.section-title');
+    sectionTitles.forEach((title) => {
+      gsap.fromTo(title,
+        { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", y: 40 },
+        {
+          clipPath: "polygon(0 -20%, 100% -20%, 100% 120%, 0 120%)",
+          y: 0,
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: title,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    // 7. General Section Reveals (excluding those with custom staggers)
+    const sections = gsap.utils.toArray<HTMLElement>('.reveal-section');
+    sections.forEach((section) => {
+      if (['hero', 'tech-stack', 'projects'].includes(section.id)) return;
+      
+      gsap.fromTo(section, 
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+    });
+  }, { scope: container });
+
   return (
-    <main className="relative min-h-screen pt-24 pb-32 overflow-hidden bg-background">
+    <main ref={container} className="relative min-h-screen pt-24 pb-32 overflow-hidden bg-background">
       {/* Background Atmosphere */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none atmosphere-bg">
         <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-primary-container/5 blur-[120px]"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-primary-container/10 blur-[120px]"></div>
       </div>
@@ -66,45 +194,50 @@ export default function Home() {
       </div>
 
       {/* 1. Hero Section */}
-      <section id="hero" className="relative w-full min-h-[85vh] flex flex-col lg:flex-row items-center justify-center pt-8 pb-20 z-10 max-w-[1200px] mx-auto px-6 overflow-hidden">
+      <section id="hero" className="relative w-full min-h-[85vh] flex flex-col lg:flex-row items-center justify-center pt-8 pb-20 z-10 max-w-[1200px] mx-auto px-6 overflow-hidden reveal-section">
         {/* Left: Content */}
-        <div className="flex flex-col items-start gap-6 z-10 w-full lg:w-7/12 relative mt-12 lg:mt-0">
-          <p className="text-slate-300 font-label-md text-sm md:text-sm uppercase tracking-[0.25em] font-bold">
+        <div className="flex flex-col items-start gap-6 z-10 w-full lg:w-7/12 relative mt-12 lg:mt-0 hero-content-wrapper">
+          <p className="text-slate-300 font-label-md text-sm md:text-sm uppercase tracking-[0.25em] font-bold hero-element">
             Welcome to my world
           </p>
 
-          <h1 className="text-4xl lg:text-6xl font-bold text-white tracking-tight leading-[1.2] mt-4">
+          <h1 className="text-4xl lg:text-6xl font-bold text-white tracking-tight leading-[1.2] mt-4 hero-element">
             Hi, I'm <span className="text-[#ff014f]">Masayeakh Islam</span><br />
             a <Typewriter words={["Professional Coder.", "Frontend Developer.", "Backend Developer.", "Full Stack Developer.", "Problem Solver."]} /><span className="text-[#ff014f] font-light animate-pulse">|</span>
           </h1>
 
-          <p className="text-slate-400 text-body-lg font-body-lg max-w-2xl leading-relaxed mt-6">
+          <p className="text-slate-400 text-body-lg font-body-lg max-w-2xl leading-relaxed mt-6 hero-element">
             I love to develop websites by using Laravel and Vue.js, also interested to use React.js and Express.js. I worked with Ecommerce, Restaurant Management, Krishi Farming, Hotel Booking also POS & ERP. To learn more about me visit my LinkedIn Profile.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-6">
-            <a href="#contact" className="bg-white text-slate-950 px-8 py-4 rounded-full flex items-center gap-3 transition-transform hover:scale-105 font-label-md font-bold shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-6 hero-element">
+            <motion.a 
+              href="#contact" 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-slate-950 px-8 py-4 rounded-full flex items-center gap-3 font-label-md font-bold shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+            >
               Start a Project
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-            </a>
+            </motion.a>
 
             {/* Horizontal Social Dock */}
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high/50 border border-white/10 backdrop-blur-md">
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition">
+              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition">
                 <span className="font-bold text-sm">in</span>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition">
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition">
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition">
                 <span className="font-bold text-sm">X</span>
-              </a>
+              </motion.a>
             </div>
           </div>
         </div>
 
         {/* Right: Architectural Image & Stats */}
-        <div className="relative mt-24 lg:mt-0 z-10 w-full lg:w-5/12 flex justify-center lg:justify-end">
+        <div className="relative mt-24 lg:mt-0 z-10 w-full lg:w-5/12 flex justify-center lg:justify-end hero-image-wrapper">
           <div className="relative w-full max-w-[360px] aspect-[4/5] rounded-3xl border border-white/10 bg-surface-container-lowest p-3 shadow-2xl group">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl z-10 pointer-events-none"></div>
             <img
@@ -141,9 +274,9 @@ export default function Home() {
       </section>
 
       {/* 2. About Me Section */}
-      <section id="about" className="max-w-[1200px] mx-auto px-6 mt-32">
+      <section id="about" className="max-w-[1200px] mx-auto px-6 mt-32 reveal-section">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#08fdd8] mb-8 relative z-10 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#08fdd8] mb-8 relative z-10 tracking-tight section-title pb-2">
             About Me
           </h2>
           <div className="text-slate-300 font-body-md leading-relaxed space-y-6 relative z-10 text-lg">
@@ -164,8 +297,8 @@ export default function Home() {
       </section>
 
       {/* 3. Tech Stack Section */}
-      <section id="tech-stack" className="max-w-[1200px] mx-auto px-6 mt-32 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg mb-2 tracking-tight">Technologies</h2>
+      <section id="tech-stack" className="max-w-[1200px] mx-auto px-6 mt-32 text-center reveal-section">
+        <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg mb-2 tracking-tight section-title pb-2">Technologies</h2>
         <p className="text-slate-400 font-label-md mb-16 tracking-widest text-sm">My Tech Stack</p>
         
         {/* Row 1 */}
@@ -223,9 +356,9 @@ export default function Home() {
       </section>
 
       {/* 4. Skills Section */}
-      <section id="skills" className="max-w-[1200px] mx-auto px-6 mt-32">
+      <section id="skills" className="max-w-[1200px] mx-auto px-6 mt-32 reveal-section">
         <div className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg tracking-tight section-title pb-2">
             Professional Skills
           </h2>
         </div>
@@ -275,13 +408,13 @@ export default function Home() {
       </section>
 
       {/* 5. Resume / Experience Section */}
-      <section id="qualifications" className="max-w-[1200px] mx-auto px-6 mt-32">
+      <section id="qualifications" className="max-w-[1200px] mx-auto px-6 mt-32 reveal-section">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Job Experience Column */}
           <div>
             <div className="mb-10">
               <span className="text-[#ff014f] font-label-md tracking-widest text-sm uppercase">2010 - 2022</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 font-headline-lg">Job Experience</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 font-headline-lg section-title pb-2">Job Experience</h2>
             </div>
             <div className="relative border-l-[4px] border-surface-container-high ml-4">
               {/* Timeline Item 1 */}
@@ -342,7 +475,7 @@ export default function Home() {
           <div>
             <div className="mb-10">
               <span className="text-[#ff014f] font-label-md tracking-widest text-sm uppercase">1998 - 2010</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 font-headline-lg">Education Quality</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 font-headline-lg section-title pb-2">Education Quality</h2>
             </div>
             <div className="relative border-l-[4px] border-surface-container-high ml-4">
               {/* Timeline Item 1 */}
@@ -402,13 +535,13 @@ export default function Home() {
       </section>
 
       {/* 6. Projects & Portfolio Section */}
-      <section id="projects" className="max-w-[1200px] mx-auto px-6 mt-32">
+      <section id="projects" className="max-w-[1200px] mx-auto px-6 mt-32 reveal-section">
         <div className="flex flex-col items-center text-center mb-16">
           <div className="px-5 py-2 rounded-full border border-white/10 bg-surface-container-high/50 backdrop-blur-md text-slate-300 text-sm font-label-md flex items-center gap-3 mb-8 shadow-lg">
             <span className="w-2.5 h-2.5 rounded-full bg-[#00c2ff] shadow-[0_0_10px_rgba(0,194,255,0.8)]"></span>
             Featured Projects
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg mb-6 tracking-tight section-title pb-2">
             Projects &amp; Portfolio
           </h2>
           <p className="text-slate-400 font-body-md max-w-2xl text-lg leading-relaxed">
@@ -418,7 +551,12 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {projects.map((project, index) => (
-            <div key={index} className="flex flex-col rounded-2xl border border-white/5 bg-[#171a21]/50 backdrop-blur-sm overflow-hidden hover:border-white/10 transition-all duration-500 group shadow-xl">
+            <motion.div 
+              key={index}
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="flex flex-col rounded-2xl border border-white/5 bg-[#171a21]/50 backdrop-blur-sm overflow-hidden hover:border-white/10 transition-all duration-500 group shadow-xl project-card"
+            >
               
               {/* Image Container */}
               <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-900 border-b border-white/5">
@@ -480,25 +618,30 @@ export default function Home() {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* 7. Contact Section */}
-      <section id="contact" className="max-w-[1200px] mx-auto px-6 mt-32 mb-16 text-center">
+      <section id="contact" className="max-w-[1200px] mx-auto px-6 mt-32 mb-16 text-center reveal-section">
         <div className="bg-surface-container-low/50 border border-white/10 rounded-3xl p-12 md:p-20 relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg mb-6 tracking-tight relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg mb-6 tracking-tight relative z-10 section-title pb-2">
             Let's work together
           </h2>
           <p className="text-slate-400 font-body-md text-lg max-w-2xl mx-auto mb-10 relative z-10">
             I'm currently available for freelance work or full-time opportunities. If you have a project that needs some creative touch, I'd love to hear about it.
           </p>
-          <a href="mailto:hello@example.com" className="inline-flex items-center gap-3 bg-[#ff014f] text-white px-8 py-4 rounded-full font-label-md font-bold transition-transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(255,1,79,0.3)] relative z-10">
+          <motion.a 
+            href="mailto:hello@example.com" 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-3 bg-[#ff014f] text-white px-8 py-4 rounded-full font-label-md font-bold shadow-[0_10px_20px_rgba(255,1,79,0.3)] relative z-10"
+          >
             Say Hello
             <span className="material-symbols-outlined">send</span>
-          </a>
+          </motion.a>
         </div>
       </section>
     </main>
