@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Typewriter from "../components/Typewriter";
+import Hover3DCard from "../components/Hover3DCard";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import gsap from "gsap";
@@ -135,7 +136,7 @@ export default function Home() {
   }, { scope: container });
 
   return (
-    <main ref={container} className="relative min-h-screen pt-24 pb-32 overflow-hidden bg-background">
+    <main ref={container} className="relative min-h-screen pt-20 pb-32 overflow-hidden bg-background">
       {/* Background Atmosphere */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none atmosphere-bg">
         <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-primary-container/5 blur-[120px]"></div>
@@ -143,10 +144,10 @@ export default function Home() {
       </div>
 
       {/* Decorative Star Icons */}
-      <div className="absolute top-40 left-[10%] opacity-40 animate-pulse">
+      <div className="absolute top-20 left-[10%] opacity-40 animate-pulse">
         <span className="material-symbols-outlined text-primary-container text-xs">grade</span>
       </div>
-      <div className="absolute top-80 right-[15%] opacity-20">
+      <div className="absolute top-60 right-[15%] opacity-20">
         <span className="material-symbols-outlined text-primary-container text-lg">grade</span>
       </div>
       <div className="absolute bottom-40 left-[20%] opacity-30">
@@ -154,9 +155,9 @@ export default function Home() {
       </div>
 
       {/* 1. Hero Section */}
-      <section id="hero" className="relative w-full min-h-[85vh] flex flex-col lg:flex-row items-center justify-center pt-8 pb-20 z-10 max-w-[1200px] mx-auto px-6 overflow-hidden reveal-section">
+      <section id="hero" className="relative w-full min-h-[75vh] flex flex-col lg:flex-row items-center justify-center pb-20 z-10 max-w-[1200px] mx-auto px-6 overflow-hidden reveal-section">
         {/* Left: Vertical Social Dock & Content */}
-        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 z-10 w-full lg:w-7/12 relative mt-12 lg:mt-0 hero-content-wrapper">
+        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 z-10 w-full lg:w-7/12 relative mt-8 lg:mt-0 hero-content-wrapper">
 
           {/* Vertical Social Dock (Desktop Only) */}
           <div className="hidden lg:flex flex-col items-center gap-4 py-4 px-2 rounded-full bg-surface-container-high/40 border border-white/5 backdrop-blur-md hero-element">
@@ -194,7 +195,7 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6 hero-element">
               <motion.a
-                href="#contact"
+                href="/contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-slate-950 px-6 py-3 rounded-full flex items-center gap-3 text-sm font-semibold shadow-[0_0_20px_rgba(255,255,255,0.15)]"
@@ -236,28 +237,125 @@ export default function Home() {
 
         {/* Right: Architectural Image & Stats */}
         <div className="relative mt-24 lg:mt-0 z-10 w-full lg:w-5/12 flex justify-center lg:justify-end hero-image-wrapper">
-          <div className="relative w-full max-w-[360px] aspect-[4/5] group">
-            {/* Glowing gradient aura on hover */}
-            <div className="absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-[#ff014f] via-[#00c2ff] to-[#08fdd8] opacity-0 group-hover:opacity-60 blur-xl transition-all duration-700 z-0"></div>
+          <Hover3DCard className="w-full max-w-[360px]">
+            <div className="relative w-full aspect-[4/5] group">
+              {/* Glowing gradient aura on hover */}
+              <div className="absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-[#ff014f] via-[#00c2ff] to-[#08fdd8] opacity-0 group-hover:opacity-60 blur-xl transition-all duration-700 z-0"></div>
 
-            {/* Outer border that changes color on hover */}
-            <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-white/10 to-white/5 group-hover:from-[#ff014f] group-hover:via-[#00c2ff] group-hover:to-[#08fdd8] opacity-100 p-[2px] transition-all duration-700 z-10">
-              {/* Inner container to hold image */}
-              <div className="w-full h-full rounded-[1.6rem] overflow-hidden bg-surface-container-lowest relative shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#00c2ff]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20 pointer-events-none"></div>
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXZLrqHO5je7lJILs8C_tWXZV1OM2qh6GLjjsntfaApNX1dPMR6q7SDHWPOz2-BkdXaGNy3QyKk1W-qitG2YUegR0mo_NM-s93Td-VgdohtK5kEDVtcAFxti9CXOr3RWoJU7R4LYqYY7eYJP0x605r6YSF2UHla8ZywcXk8mFSEqCjIY4uv15ByYfJiL1kqJtzUQzNPDKs4CHsOsvqqTwz12sE9OXhaoJ140-tmkTRz4RV8CGh4ZgLhoc_cfQR9QEhr0S68kPlMc9c"
-                  alt="Masayeakh Islam"
-                  className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 object-top scale-105 group-hover:scale-100 z-10"
-                />
+              {/* Outer border that changes color on hover */}
+              <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-white/10 to-white/5 group-hover:from-[#ff014f] group-hover:via-[#00c2ff] group-hover:to-[#08fdd8] opacity-100 p-[2px] transition-all duration-700 z-10">
+                {/* Inner container to hold image */}
+                <div className="w-full h-full rounded-[1.6rem] overflow-hidden bg-surface-container-lowest relative shadow-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#00c2ff]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20 pointer-events-none"></div>
+                  <img
+                    src="/assets/me1.jpg"
+                    alt="Masayeakh Islam"
+                    className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 object-top scale-105 group-hover:scale-100 z-10"
+                  />
+                </div>
+              </div>
+            </div>
+          </Hover3DCard>
+        </div>
+
+        {/* Scroll Down Indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 text-slate-400 opacity-80 hover:opacity-100 transition-opacity"
+        >
+          <div className="w-5 h-8 rounded-full border-2 border-slate-400 flex justify-center p-1">
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              className="w-1 h-1.5 bg-slate-400 rounded-full"
+            />
+          </div>
+          {/* <span className="text-xs uppercase tracking-[0.2em] font-bold">Scroll Down</span> */}
+          <span className="material-symbols-outlined text-[16px] animate-bounce"></span>
+        </motion.div>
+      </section>
+
+      {/* 2. About Me Section */}
+      <section id="about" className="max-w-[1200px] mx-auto px-6 mt-24 mb-32 reveal-section">
+        <div className="bg-[#171a21]/50 backdrop-blur-sm border border-white/5 rounded-[2rem] p-8 md:p-16 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#00c2ff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg mb-6 tracking-tight section-title pb-2">About Me</h2>
+              <p className="text-slate-400 font-body-md text-lg leading-relaxed mb-6">
+                I’m a passionate Full Stack Developer specializing in the MERN stack. I love turning complex ideas into scalable, real-world solutions with clean, efficient code.
+              </p>
+              <p className="text-slate-400 font-body-md text-lg leading-relaxed mb-8">
+                Whether it's crafting an intuitive frontend interface or architecting a robust backend database, I thrive on building digital experiences that make an impact.
+              </p>
+              <a href="/about" className="inline-flex items-center gap-2 text-[#00c2ff] font-bold hover:text-white transition-colors border-b border-[#00c2ff] hover:border-white pb-1">
+                Read Full Story <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-surface-container-lowest/50 border border-white/5 p-6 rounded-2xl hover:border-[#08fdd8]/30 transition-all hover:-translate-y-1">
+                <span className="text-4xl font-bold text-[#08fdd8] block mb-2">3+</span>
+                <span className="text-slate-400 text-sm font-bold tracking-widest uppercase">Years Exp.</span>
+              </div>
+              <div className="bg-surface-container-lowest/50 border border-white/5 p-6 rounded-2xl hover:border-[#ff014f]/30 transition-all hover:-translate-y-1">
+                <span className="text-4xl font-bold text-[#ff014f] block mb-2">150+</span>
+                <span className="text-slate-400 text-sm font-bold tracking-widest uppercase">Projects</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. About Me Section */}
-      {/*  */}
+      {/* 2.5 Services Section */}
+      <section id="services" className="max-w-[1200px] mx-auto px-6 mt-32 mb-16 reveal-section">
+        <div className="text-center mb-16">
+          <div className="inline-flex px-5 py-2 rounded-full border border-white/10 bg-surface-container-high/50 backdrop-blur-md text-slate-300 text-sm font-label-md items-center gap-3 mb-8 shadow-lg">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#08fdd8] shadow-[0_0_10px_rgba(8,253,216,0.8)]"></span>
+            What I Do
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white font-headline-lg mb-6 tracking-tight section-title pb-2">
+            My Services
+          </h2>
+          <p className="text-slate-400 font-body-md max-w-2xl mx-auto text-lg leading-relaxed">
+            I offer a full range of web development services to help you build, scale, and maintain your digital products.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Service 1 */}
+          <div className="bg-surface-container-low/40 backdrop-blur-md hover:bg-surface-container-low transition-all duration-500 rounded-3xl p-8 border border-white/5 hover:border-[#00c2ff]/30 hover:-translate-y-2 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00c2ff]/10 rounded-full blur-3xl group-hover:bg-[#00c2ff]/20 transition-all duration-500"></div>
+            <span className="material-symbols-outlined text-5xl text-[#00c2ff] mb-6 block relative z-10">code</span>
+            <h3 className="text-2xl font-bold text-white mb-4 relative z-10">Frontend Dev</h3>
+            <p className="text-slate-400 leading-relaxed mb-6 relative z-10">
+              Building highly interactive, accessible, and performant user interfaces using React, Next.js, and modern CSS frameworks like Tailwind.
+            </p>
+          </div>
+
+          {/* Service 2 */}
+          <div className="bg-surface-container-low/40 backdrop-blur-md hover:bg-surface-container-low transition-all duration-500 rounded-3xl p-8 border border-white/5 hover:border-[#08fdd8]/30 hover:-translate-y-2 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#08fdd8]/10 rounded-full blur-3xl group-hover:bg-[#08fdd8]/20 transition-all duration-500"></div>
+            <span className="material-symbols-outlined text-5xl text-[#08fdd8] mb-6 block relative z-10">dns</span>
+            <h3 className="text-2xl font-bold text-white mb-4 relative z-10">Backend Dev</h3>
+            <p className="text-slate-400 leading-relaxed mb-6 relative z-10">
+              Designing robust database architectures and writing secure, scalable RESTful APIs using Node.js, Express, NestJS, and MongoDB.
+            </p>
+          </div>
+
+          {/* Service 3 */}
+          <div className="bg-surface-container-low/40 backdrop-blur-md hover:bg-surface-container-low transition-all duration-500 rounded-3xl p-8 border border-white/5 hover:border-[#ff014f]/30 hover:-translate-y-2 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff014f]/10 rounded-full blur-3xl group-hover:bg-[#ff014f]/20 transition-all duration-500"></div>
+            <span className="material-symbols-outlined text-5xl text-[#ff014f] mb-6 block relative z-10">design_services</span>
+            <h3 className="text-2xl font-bold text-white mb-4 relative z-10">UI/UX Design</h3>
+            <p className="text-slate-400 leading-relaxed mb-6 relative z-10">
+              Creating beautiful, responsive web designs and engaging user experiences with a focus on modern aesthetics and usability.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* 3. Tech Stack Section */}
       <section id="tech-stack" className="max-w-[1200px] mx-auto px-6 mt-16 text-center reveal-section">
@@ -376,58 +474,42 @@ export default function Home() {
           {/* Job Experience Column */}
           <div>
             <div className="mb-10">
-              <span className="text-[#ff014f] font-label-md tracking-widest text-sm uppercase">2010 - 2022</span>
+              <span className="text-[#00c2ff] font-label-md tracking-widest text-sm uppercase font-bold">2024 - Present</span>
               <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 font-headline-lg section-title pb-2">Job Experience</h2>
             </div>
             <div className="relative border-l-[4px] border-surface-container-high ml-4">
               {/* Timeline Item 1 */}
               <div className="relative pl-10 pb-12 group">
-                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-background group-hover:bg-[#ff014f] transition-colors duration-500"></div>
+                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-[#0f1117] group-hover:bg-[#00c2ff] transition-colors duration-500"></div>
                 <div className="absolute left-0 top-14 w-10 h-1 bg-surface-container-high"></div>
-                <div className="bg-surface-container-low hover:bg-surface-container transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.1)] relative">
+                <div className="bg-[#171a21]/50 backdrop-blur-sm hover:bg-[#171a21] transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(0,194,255,0.15)] group-hover:border-[#00c2ff]/30 relative">
                   <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/5">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors duration-300">Frontend Developer</h3>
-                      <p className="text-slate-400 text-sm font-label-md">Shift Asia Team - (2022 - 2023)</p>
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#00c2ff] transition-colors duration-300">Full Stack Developer</h3>
+                      <p className="text-slate-400 text-sm font-bold tracking-wide uppercase">IT Bangla LTD &bull; (2024 - 2025)</p>
                     </div>
-                    <span className="px-4 py-2 rounded-lg bg-background text-[#ff014f] shadow-inner text-sm font-bold tracking-wide self-start xl:self-center">VIETNAM</span>
+                    <span className="px-4 py-2 rounded-lg bg-[#00c2ff]/10 text-[#00c2ff] border border-[#00c2ff]/20 text-sm font-bold tracking-widest self-start xl:self-center">BANGLADESH</span>
                   </div>
-                  <p className="text-slate-400 leading-relaxed text-body-md group-hover:text-slate-300 transition-colors duration-300">
-                    A popular destination with a growing number of highly qualified homegrown graduates, it's true that securing a role in Vietnam isn't easy.
+                  <p className="text-slate-400 leading-relaxed text-sm group-hover:text-slate-300 transition-colors duration-300">
+                    Spearheaded the development of complex MERN stack applications. Orchestrated seamless integrations between frontend interfaces and robust backend architectures, focusing on performance, scalability, and writing clean, efficient code.
                   </p>
                 </div>
               </div>
+
               {/* Timeline Item 2 */}
-              <div className="relative pl-10 pb-12 group">
-                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-background group-hover:bg-[#ff014f] transition-colors duration-500"></div>
-                <div className="absolute left-0 top-14 w-10 h-1 bg-surface-container-high"></div>
-                <div className="bg-surface-container-low hover:bg-surface-container transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.1)] relative">
-                  <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/5">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors duration-300">Laravel Developer</h3>
-                      <p className="text-slate-400 text-sm font-label-md">Netigian IT - (2024 - 2025)</p>
-                    </div>
-                    <span className="px-4 py-2 rounded-lg bg-background text-[#ff014f] shadow-inner text-sm font-bold tracking-wide self-start xl:self-center">BANGLADESH</span>
-                  </div>
-                  <p className="text-slate-400 leading-relaxed text-body-md group-hover:text-slate-300 transition-colors duration-300">
-                    Netigian's hiring process is an important part of our culture. Netigian's care deeply about their teams and the people who make them up.
-                  </p>
-                </div>
-              </div>
-              {/* Timeline Item 3 */}
               <div className="relative pl-10 group">
-                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-background group-hover:bg-[#ff014f] transition-colors duration-500"></div>
+                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-[#0f1117] group-hover:bg-[#08fdd8] transition-colors duration-500"></div>
                 <div className="absolute left-0 top-14 w-10 h-1 bg-surface-container-high"></div>
-                <div className="bg-surface-container-low hover:bg-surface-container transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.1)] relative">
+                <div className="bg-[#171a21]/50 backdrop-blur-sm hover:bg-[#171a21] transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(8,253,216,0.15)] group-hover:border-[#08fdd8]/30 relative">
                   <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/5">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors duration-300">Frontend Developer</h3>
-                      <p className="text-slate-400 text-sm font-label-md">Synergy Tech - (2021 - 2022)</p>
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#08fdd8] transition-colors duration-300">Backend Developer (Intern)</h3>
+                      <p className="text-slate-400 text-sm font-bold tracking-wide uppercase">IT Bangla LTD &bull; (2024)</p>
                     </div>
-                    <span className="px-4 py-2 rounded-lg bg-background text-[#ff014f] shadow-inner text-sm font-bold tracking-wide self-start xl:self-center">BANGLADESH</span>
+                    <span className="px-4 py-2 rounded-lg bg-[#08fdd8]/10 text-[#08fdd8] border border-[#08fdd8]/20 text-sm font-bold tracking-widest self-start xl:self-center">BANGLADESH</span>
                   </div>
-                  <p className="text-slate-400 leading-relaxed text-body-md group-hover:text-slate-300 transition-colors duration-300">
-                    The Bangladesh economy has grown strongly over recent years, having transformed itself from a producer and innovation-based economy.
+                  <p className="text-slate-400 leading-relaxed text-sm group-hover:text-slate-300 transition-colors duration-300">
+                    Engineered robust RESTful APIs and managed MongoDB databases to support dynamic frontend features. Optimized backend queries and ensured secure data transactions across the platform.
                   </p>
                 </div>
               </div>
@@ -437,58 +519,60 @@ export default function Home() {
           {/* Education Quality Column */}
           <div>
             <div className="mb-10">
-              <span className="text-[#ff014f] font-label-md tracking-widest text-sm uppercase">1998 - 2010</span>
+              <span className="text-[#ff014f] font-label-md tracking-widest text-sm uppercase font-bold">2014 - 2024</span>
               <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 font-headline-lg section-title pb-2">Education Quality</h2>
             </div>
             <div className="relative border-l-[4px] border-surface-container-high ml-4">
               {/* Timeline Item 1 */}
               <div className="relative pl-10 pb-12 group">
-                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-background group-hover:bg-[#ff014f] transition-colors duration-500"></div>
+                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-[#0f1117] group-hover:bg-[#ff014f] transition-colors duration-500"></div>
                 <div className="absolute left-0 top-14 w-10 h-1 bg-surface-container-high"></div>
-                <div className="bg-surface-container-low hover:bg-surface-container transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.1)] relative">
+                <div className="bg-[#171a21]/50 backdrop-blur-sm hover:bg-[#171a21] transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.15)] group-hover:border-[#ff014f]/30 relative">
                   <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/5">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors duration-300">Bachelor of computer science and engineering </h3>
-                      <p className="text-slate-400 text-sm font-label-md">American international university bangladesh(2019 - 2025)</p>
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff014f] transition-colors duration-300 leading-tight">B.Sc. in Computer Science &amp; Engineering</h3>
+                      <p className="text-slate-400 text-sm font-bold tracking-wide uppercase">AIUB &bull; (2019 - 2024)</p>
                     </div>
-                    <span className="px-4 py-2 rounded-lg bg-background text-[#ff014f] shadow-inner text-sm font-bold tracking-wide self-start xl:self-center">3.78/4</span>
+                    <span className="px-4 py-2 rounded-lg bg-[#ff014f]/10 text-[#ff014f] border border-[#ff014f]/20 text-sm font-bold tracking-widest self-start xl:self-center shrink-0">CGPA: 3.78/4</span>
                   </div>
-                  <p className="text-slate-400 leading-relaxed text-body-md group-hover:text-slate-300 transition-colors duration-300">
-                    The academic and practical training designed to prepare individuals for careers in computer science, encompassing areas such as software development, system architecture, data management, and emerging technologies.
+                  <p className="text-slate-400 leading-relaxed text-sm group-hover:text-slate-300 transition-colors duration-300">
+                    Completed a comprehensive curriculum encompassing software engineering, system architecture, data management, and emerging technologies. Graduated with high honors.
                   </p>
                 </div>
               </div>
+
               {/* Timeline Item 2 */}
               <div className="relative pl-10 pb-12 group">
-                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-background group-hover:bg-[#ff014f] transition-colors duration-500"></div>
+                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-[#0f1117] group-hover:bg-[#ff014f] transition-colors duration-500"></div>
                 <div className="absolute left-0 top-14 w-10 h-1 bg-surface-container-high"></div>
-                <div className="bg-surface-container-low hover:bg-surface-container transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.1)] relative">
+                <div className="bg-[#171a21]/50 backdrop-blur-sm hover:bg-[#171a21] transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.15)] group-hover:border-[#ff014f]/30 relative">
                   <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/5">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors duration-300">Higher Secondary Education</h3>
-                      <p className="text-slate-400 text-sm font-label-md">Shaheed Abdussalam College (2016 - 2018)</p>
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff014f] transition-colors duration-300">Higher Secondary Education</h3>
+                      <p className="text-slate-400 text-sm font-bold tracking-wide uppercase">Govt Tolaram College &bull; (2016 - 2018)</p>
                     </div>
-                    <span className="px-4 py-2 rounded-lg bg-background text-[#ff014f] shadow-inner text-sm font-bold tracking-wide self-start xl:self-center">4.30/5</span>
+                    <span className="px-4 py-2 rounded-lg bg-[#ff014f]/10 text-[#ff014f] border border-[#ff014f]/20 text-sm font-bold tracking-widest self-start xl:self-center shrink-0">GPA: 4.17/5</span>
                   </div>
-                  <p className="text-slate-400 leading-relaxed text-body-md group-hover:text-slate-300 transition-colors duration-300">
-                    Higher education is tertiary education leading to award of an academic degree. Higher education, also called post-secondary education.
+                  <p className="text-slate-400 leading-relaxed text-sm group-hover:text-slate-300 transition-colors duration-300">
+                    Completed higher secondary education with a strong focus on science and mathematics, building the analytical and logical foundation essential for computer science.
                   </p>
                 </div>
               </div>
+
               {/* Timeline Item 3 */}
               <div className="relative pl-10 group">
-                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-background group-hover:bg-[#ff014f] transition-colors duration-500"></div>
+                <div className="absolute left-[-14px] top-12 w-6 h-6 rounded-full bg-surface-container-high border-4 border-[#0f1117] group-hover:bg-[#ff014f] transition-colors duration-500"></div>
                 <div className="absolute left-0 top-14 w-10 h-1 bg-surface-container-high"></div>
-                <div className="bg-surface-container-low hover:bg-surface-container transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.1)] relative">
+                <div className="bg-[#171a21]/50 backdrop-blur-sm hover:bg-[#171a21] transition-all duration-500 rounded-2xl p-8 border border-white/5 shadow-lg group-hover:shadow-[0_0_20px_rgba(255,1,79,0.15)] group-hover:border-[#ff014f]/30 relative">
                   <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/5">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors duration-300">Secondary School Education</h3>
-                      <p className="text-slate-400 text-sm font-label-md">Kalia Pilot High School (2014 - 2016)</p>
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff014f] transition-colors duration-300">Secondary School Education</h3>
+                      <p className="text-slate-400 text-sm font-bold tracking-wide uppercase">Fatulla Pilot High School &bull; (2014 - 2016)</p>
                     </div>
-                    <span className="px-4 py-2 rounded-lg bg-background text-[#ff014f] shadow-inner text-sm font-bold tracking-wide self-start xl:self-center">4.00/5</span>
+                    <span className="px-4 py-2 rounded-lg bg-[#ff014f]/10 text-[#ff014f] border border-[#ff014f]/20 text-sm font-bold tracking-widest self-start xl:self-center shrink-0">GPA: 4.78/5</span>
                   </div>
-                  <p className="text-slate-400 leading-relaxed text-body-md group-hover:text-slate-300 transition-colors duration-300">
-                    Secondary education or post-primary education covers two phases on the International Standard Classification of Education scale.
+                  <p className="text-slate-400 leading-relaxed text-sm group-hover:text-slate-300 transition-colors duration-300">
+                    Graduated with distinction, excelling in foundational science subjects and developing an early, keen interest in technology and computational logic.
                   </p>
                 </div>
               </div>

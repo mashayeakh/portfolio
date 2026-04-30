@@ -7,6 +7,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import PageTransition from "@/components/PageTransition";
 import Preloader from "@/components/Preloader";
 import CursorTrail from "@/components/CursorTrail";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const epilogue = Epilogue({ subsets: ["latin"], variable: "--font-epilogue" });
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${epilogue.variable} font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container antialiased relative`}
       >
+        <ThemeToggle />
         <CursorTrail />
         <Preloader />
         <SmoothScroll>

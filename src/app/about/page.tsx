@@ -18,7 +18,7 @@ export default function About() {
             <div className="absolute -inset-1 bg-gradient-to-tr from-[#00c2ff]/20 via-[#ff014f]/20 to-[#08fdd8]/20 rounded-[1.75rem] blur-xl opacity-25 group-hover:opacity-60 transition duration-1000"></div>
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glass-border bg-surface-container-low">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXZLrqHO5je7lJILs8C_tWXZV1OM2qh6GLjjsntfaApNX1dPMR6q7SDHWPOz2-BkdXaGNy3QyKk1W-qitG2YUegR0mo_NM-s93Td-VgdohtK5kEDVtcAFxti9CXOr3RWoJU7R4LYqYY7eYJP0x605r6YSF2UHla8ZywcXk8mFSEqCjIY4uv15ByYfJiL1kqJtzUQzNPDKs4CHsOsvqqTwz12sE9OXhaoJ140-tmkTRz4RV8CGh4ZgLhoc_cfQR9QEhr0S68kPlMc9c"
+                src="/assets/me2.jpg"
                 alt="Masayeakh Islam"
                 className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 object-top scale-105 group-hover:scale-100"
               />
@@ -88,17 +88,17 @@ export default function About() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-6 pt-4">
+          {/* <div className="flex flex-wrap gap-6 pt-4">
             <a href="https://drive.google.com/file/d/1TIGqHKGuk5iSoKzJ4pXvOQDeSN7YR4NE/view?usp=sharing" target="_blank" rel="noreferrer" className="bg-white text-slate-950 px-8 py-3 rounded-full font-bold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]">
               Download Resume
               <span className="material-symbols-outlined text-[20px]">download</span>
             </a>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Skill Pills Section */}
-      <section className="mt-24 relative z-10">
+      {/* <section className="mt-24 relative z-10">
         <div className="flex flex-wrap justify-center gap-3">
           {['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Framer Motion'].map((skill) => (
             <span key={skill} className="px-5 py-2 rounded-full border border-white/10 bg-[#171a21]/80 text-slate-300 text-sm font-bold tracking-wide hover:border-[#00c2ff]/50 hover:text-white cursor-default transition-colors">
@@ -106,7 +106,7 @@ export default function About() {
             </span>
           ))}
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

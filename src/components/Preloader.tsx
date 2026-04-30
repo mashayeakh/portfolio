@@ -32,19 +32,19 @@ export default function Preloader() {
         >
           {/* Animated Orbs */}
           <div className="flex items-center gap-3">
-            <motion.div 
+            <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="w-4 h-4 rounded-full bg-[#ff014f] shadow-[0_0_15px_rgba(255,1,79,0.8)]"
             />
-            <motion.div 
+            <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
               className="w-4 h-4 rounded-full bg-[#00c2ff] shadow-[0_0_15px_rgba(0,194,255,0.8)]"
             />
-            <motion.div 
+            <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}

@@ -182,3 +182,29 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* 
+  Magic Light Mode Trick: 
+  Since the entire UI is built with hardcoded dark mode colors, 
+  we can use a CSS filter to mathematically invert the lightness 
+  while preserving the hues using hue-rotate(180deg).
+*/
+html.light-mode {
+  filter: invert(1) hue-rotate(180deg);
+  background-color: #eef0f5; /* Inverted version of #111318 roughly */
+}
+
+/* 
+  We must revert the inversion on images, videos, and specific elements 
+  so they don't look like x-ray negatives!
+*/
+html.light-mode img,
+html.light-mode video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Also revert the preloader animation so it stays the correct color */
+html.light-mode .mix-blend-screen {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: multiply; /* Invert screen to multiply for light backgrounds */
+}
