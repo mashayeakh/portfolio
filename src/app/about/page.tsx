@@ -40,7 +40,7 @@ export default function About() {
               <span className="font-label-md text-[10px] text-slate-400 uppercase tracking-widest font-bold">Years Exp.</span>
             </div>
             <div className="p-6 rounded-2xl glass-border bg-surface-container-lowest text-center group hover:-translate-y-1 transition-transform">
-              <span className="block text-3xl font-bold text-[#ff014f] mb-1">150+</span>
+              <span className="block text-3xl font-bold text-[#ff014f] mb-1">20+</span>
               <span className="font-label-md text-[10px] text-slate-400 uppercase tracking-widest font-bold">Projects</span>
             </div>
             <div className="p-6 rounded-2xl glass-border bg-surface-container-lowest text-center group hover:-translate-y-1 transition-transform">
