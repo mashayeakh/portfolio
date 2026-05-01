@@ -8,6 +8,7 @@ import PageTransition from "@/components/PageTransition";
 import Preloader from "@/components/Preloader";
 import CursorTrail from "@/components/CursorTrail";
 import ThemeToggle from "@/components/ThemeToggle";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const epilogue = Epilogue({ subsets: ["latin"], variable: "--font-epilogue" });
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Preloader />
         <SmoothScroll>
           <Header />
+          <ScrollToTop />
           <PageTransition>
             {children}
           </PageTransition>

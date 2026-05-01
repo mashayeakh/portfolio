@@ -101,7 +101,7 @@ export default function Contact() {
             </a>
             <a href="https://x.com/MashTechie" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-surface-container-highest/10 border border-white/5 rounded-lg hover:bg-white hover:text-slate-950 transition-all duration-300">
               <span className="material-symbols-outlined">tag</span>
-              <span className="font-label-md text-label-md font-bold">X (Twitter)</span>
+              <span className="font-label-md text-label-md font-bold">Twitter</span>
             </a>
           </div>
 
