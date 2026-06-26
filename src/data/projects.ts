@@ -16,6 +16,21 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "jobspark",
+    title: "JobSpark",
+    type: "AI-Integrated Job Portal",
+    description: "JobSpark is a modern, AI-integrated job portal that connects job seekers and recruiters with ease. Designed to streamline the hiring process, JobSpark supports three distinct user roles: Admin, Job Seeker, and Recruiter — each with personalized dashboards and smart functionality.",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1470&auto=format&fit=crop",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "Better Auth", "Cloudinary", "Stripe Payment", "PostSQL", "Prisma", "JWT", "Role-Based Authentication", "AI Integrations", "GroqAI", "Rate Limiting"],
+    features: ["Admin Dashboard", "Job Seeker Portal", "Recruiter Management"],
+    moreFeatures: 2,
+    badgeColor: "bg-[#14b8a6]",
+    liveLink: "https://jobspark-masayeakh.netlify.app",
+    githubLink: "https://github.com/mashayeakh/Jobspark",
+    challenges: "Designing a role-based experience that felt intuitive for admins, recruiters, and job seekers while integrating AI-driven features without overwhelming the user flow.",
+    futurePlans: "Expand AI-based job matching and add smarter recruiter insights for faster hiring decisions.",
+  },
+  {
     id: "cinetube",
     title: "CineTube",
     type: "Frontend / Social",
@@ -35,7 +50,7 @@ export const projects: Project[] = [
     title: "SkillBridge",
     type: "Web Application",
     description: "A client-side web application connecting learners with tutors efficiently. Users can browse tutors, view profiles, and book sessions. It features complete booking workflows, profile management, and a robust admin oversight dashboard.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1471&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1471&auto=format&fit=crop",
     technologies: ["Next.js", "Shadcn ui", "Better Auth", "REST APIs", "NeonDB", "Postgresql", "Prisma ORM"],
     features: ["Tutor Browsing & Booking", "Session Management", "Admin Oversight Dashboard"],
     moreFeatures: 3,
@@ -59,20 +74,5 @@ export const projects: Project[] = [
     githubLink: "https://github.com/mashayeakh/Tech-Hunt",
     challenges: "Balancing high-end visual fidelity and complex client-side interactions without compromising performance or responsiveness across mobile devices.",
     futurePlans: "Add 3D model integrations and WebGL experiments to push the boundaries of browser rendering further.",
-  },
-  {
-    id: "gadget-heaven",
-    title: "Gadget Heaven",
-    type: "E-Commerce",
-    description: "A modern e-commerce platform where users can explore, manage, and purchase the latest gadgets. Built with a focus on efficient data handling, persistent user state, and dynamic UI interactions for a highly engaging shopping experience.",
-    image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=1470&auto=format&fit=crop",
-    technologies: ["Next.js", "Shadcn ui", "Better Auth", "REST APIs", "NeonDB", "Postgresql", "Prisma ORM"],
-    features: ["Dynamic Shopping Cart", "Persistent User State", "Intuitive Product Filtering"],
-    moreFeatures: 2,
-    badgeColor: "bg-[#a855f7]",
-    liveLink: "https://gadget-heaven-kappa.vercel.app",
-    githubLink: "https://github.com/mashayeakh/Gadget-Heaven",
-    challenges: "Ensuring persistent and reliable state management across multiple routes without a backend, meaning the shopping cart and user preferences had to be efficiently synchronized with local browser storage.",
-    futurePlans: "Incorporate a mock payment gateway integration and a dedicated backend for robust inventory management.",
   }
 ];
